@@ -4,7 +4,7 @@ import importlib
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models import ObjectDoesNotExist
 from django.http import Http404, HttpResponseRedirect
 from django.utils import timezone
