@@ -8,14 +8,14 @@ from .. import models
 register = Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_reviews(obj):
     """Simply returns the reviews for an object."""
     ctype = ContentType.objects.get_for_model(obj)
     return models.Review.objects.filter(content_type=ctype, object_id=obj.id)
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_review_average(obj):
     """Returns the review average for an object."""
     total = 0
@@ -31,7 +31,7 @@ def get_review_average(obj):
     return False
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_review_count(obj):
     """Simply returns the review count for an object."""
     return get_reviews(obj).count()
@@ -71,7 +71,7 @@ def render_category_averages(obj, normalize_to=100):
     return context
 
 
-@register.assignment_tag
+@register.simple_tag
 def total_review_average(obj, normalize_to=100):
     """Returns the average for all reviews of the given object."""
     ctype = ContentType.objects.get_for_model(obj)
@@ -85,7 +85,7 @@ def total_review_average(obj, normalize_to=100):
     return total_average
 
 
-@register.assignment_tag
+@register.simple_tag
 def user_has_reviewed(obj, user):
     """Returns True if the user has already reviewed the object."""
     ctype = ContentType.objects.get_for_model(obj)
