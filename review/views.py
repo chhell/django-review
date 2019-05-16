@@ -40,7 +40,7 @@ class ReviewViewMixin(object):
     def get_form_kwargs(self, *args, **kwargs):
         kwargs = super(ReviewViewMixin, self).get_form_kwargs(*args, **kwargs)
         kwargs.update({'reviewed_item': self.reviewed_item})
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             kwargs.update({'user': self.request.user})
         return kwargs
 
@@ -93,7 +93,7 @@ class ReviewCreateView(ReviewViewMixin, CreateView):
             raise Http404
 
         # Check for permission
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             # Check, if user has already reviewed this item
             if getattr(settings, 'REVIEW_AVOID_MULTIPLE_REVIEWS', False):
                 try:
